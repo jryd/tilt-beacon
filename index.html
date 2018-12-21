@@ -1,0 +1,110 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Tilt Monitor</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="/app.css" />
+</head>
+
+<body class="bg-pattern h-screen">
+    <div id="app">
+
+        <!-- Main Content / Container Start-->
+        <div class="container mx-auto flex flex-col h-full items-center" >
+
+            <div class="my-8 text-5xl font-bold text-grey-darkest">
+                <span>{{ preferences.title }}</span>
+            </div>
+
+            <div class="px-2 py-4 w-full" v-cloak>
+                <div class="flex flex-wrap -mx-2">
+                    <Tilt
+                        v-for="tilt in tilts"
+                        :key="tilt.colour"
+                        v-if="tilt.key"
+                        :data="tilt"
+                        :preferences="preferences"
+                        @disconnected="disconnected"
+                    ></Tilt>
+                </div>
+            </div>
+        </div>
+        <!-- Main Content / Container End -->
+
+        <!-- Preferences Menu Start -->
+        <div class="fixed pin-r pin-t mt-4 mr-4 transition-slide z-20">
+            <i class="fas fa-cog fa-2x cursor-pointer" v-show="!preferenceMenuOpen" @click="preferenceMenuOpen = true"></i>
+            <i class="far fa-arrow-alt-circle-right fa-2x cursor-pointer" v-show="preferenceMenuOpen" @click="preferenceMenuOpen = false"></i>
+        </div>
+        <div class="fixed pin-r pin-t w-1/4 min-w-64" :class="{ 'transition-slide z--10': !preferenceMenuOpen, 'z-10': preferenceMenuOpen }">
+            <div class="min-h-screen bg-white transition-slide" :class="{ 'closed': !preferenceMenuOpen, 'shadow-lg-reverse': preferenceMenuOpen }">
+                <div class="p-4">
+                    <h1 class="font-bold text-2xl pb-8">Preferences</h1>
+
+                    <div class="mb-6">
+                        <label for="title" class="pb-1 block font-bold text-lg">Title</label>
+                        <input class="block bg-blue-grey appearance-none border-2 border-transparent rounded w-full py-2 px-4 leading-tight focus:border-blue-grey-dark focus:shadow focus:outline-none"
+                            type="text"
+                            placeholder="Tilt Monitor"
+                            v-model="preferences.title"
+                        >
+                    </div>
+
+                    <div class="mb-6">
+                        <label for="title" class="pb-1 block font-bold text-lg">Temperature Unit</label>
+                        <div>
+                            <input type="radio"
+                                name="temperature_preference"
+                                value="F"
+                                v-model="preferences.temperature"
+                            >
+                            <label for="temperature_preference" class="ml-2">&deg; F</label>
+                        </div>
+                        <div>
+                            <input type="radio"
+                                name="temperature_preference"
+                                value="C"
+                                v-model="preferences.temperature"
+                            >
+                            <label for="temperature_preference" class="ml-2">&deg; C</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <h2 class="pb-1 block font-bold text-lg">Cloud Logging</h2>
+
+                        <div class="mb-2">
+                            <label for="title" class="pb-1 block font-bold">Default URL</label>
+                            <input class="block bg-blue-grey appearance-none border-2 border-transparent rounded w-full py-2 px-4 leading-tight focus:border-blue-grey-dark focus:shadow focus:outline-none"
+                                type="text"
+                                placeholder="https://brew.grainfather.com/iot/{device-id}/tilt"
+                                v-model="preferences.cloud_logging_default_url"
+                            >
+                        </div>
+
+                        <div class="mb-2">
+                            <label for="title" class="pb-1 block font-bold">Default Interval</label>
+                            <input class="block bg-blue-grey appearance-none border-2 border-transparent rounded w-full py-2 px-4 leading-tight focus:border-blue-grey-dark focus:shadow focus:outline-none"
+                                type="number"
+                                placeholder="15"
+                                step="1"
+                                v-model="preferences.cloud_logging_default_interval"
+                            >
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- Preferences Menu End -->
+
+    </div>
+    <script src="/app.js"></script>
+</body>
+
+</html>
