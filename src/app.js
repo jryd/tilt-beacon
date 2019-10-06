@@ -51,7 +51,7 @@ const app = new Vue({
         });
 
         // Uncomment the below for testing
-        // this.testing()
+        this.testing()
     },
 
     computed: {

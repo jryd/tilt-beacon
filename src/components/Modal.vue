@@ -25,7 +25,7 @@
                                             <i class="fas fa-minus fa-stack-1x" :class="'text-' + tilt.toLowerCase()"></i>
                                         </span>
 
-                                        <p class="text-black text-3xl tracking-tight mx-2">
+                                        <p class="text-3xl tracking-tight mx-2">
                                             {{ calibratedTemperature }}&deg;
                                         </p>
 
