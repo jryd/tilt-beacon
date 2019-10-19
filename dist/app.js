@@ -39350,8 +39350,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
         if (this.preferences.cloud_logging_default_url && !this.configuration.cloudLogging.url) {
             this.configuration.cloudLogging.url = this.preferences.cloud_logging_default_url;
         }
@@ -39360,13 +39358,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.configuration.cloudLogging.interval = this.preferences.cloud_logging_default_interval;
         }
 
-        setInterval(function () {
-            var difference = __WEBPACK_IMPORTED_MODULE_2_date_fns_difference_in_seconds___default()(new Date(), _this.data.datetime);
-            _this.disconnected = difference > 20;
-            if (difference > 60) {
-                _this.$emit('disconnected', _this.data.colour);
-            }
-        }, 1000);
+        // setInterval(() => {
+        //     let difference = differenceInSeconds(new Date(), this.data.datetime)
+        //     this.disconnected =  difference > 20;
+        //     if (difference > 60) {
+        //         this.$emit('disconnected', this.data.colour)
+        //     }
+
+        // }, 1000);
 
         if (this.configuration.cloudLogging.enabled && this.canLog) {
             this.startLogging();
@@ -39505,7 +39504,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (this.configuration.cloudLogging) this.editing = false;
         },
         log: function log() {
-            var _this2 = this;
+            var _this = this;
 
             this.$toasted.info('Sending Tilt data to the cloud...', {
                 icon: {
@@ -39553,14 +39552,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }) */
 
             axios.get(this.thingspeakURL).then(function () {
-                _this2.$toasted.success('Tilt data was successfully sent to the cloud.', {
+                _this.$toasted.success('Tilt data was successfully sent to the cloud.', {
                     icon: 'check',
                     theme: 'primary',
                     position: 'top-right',
                     duration: 5000
                 });
             }).catch(function (error) {
-                _this2.$toasted.error('There was an issue sending Tilt data to the cloud.', {
+                _this.$toasted.error('There was an issue sending Tilt data to the cloud.', {
                     icon: 'report_problem',
                     theme: 'primary',
                     position: 'top-right',

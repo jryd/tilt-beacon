@@ -146,14 +146,14 @@
                 this.configuration.cloudLogging.interval = this.preferences.cloud_logging_default_interval
             }
 
-            setInterval(() => {
-                let difference = differenceInSeconds(new Date(), this.data.datetime)
-                this.disconnected =  difference > 20;
-                if (difference > 60) {
-                    this.$emit('disconnected', this.data.colour)
-                }
+            // setInterval(() => {
+            //     let difference = differenceInSeconds(new Date(), this.data.datetime)
+            //     this.disconnected =  difference > 20;
+            //     if (difference > 60) {
+            //         this.$emit('disconnected', this.data.colour)
+            //     }
 
-            }, 1000);
+            // }, 1000);
 
             if (this.configuration.cloudLogging.enabled && this.canLog) {
                 this.startLogging()
