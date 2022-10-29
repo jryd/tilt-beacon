@@ -24,8 +24,8 @@
     "material-icons": "^0.2.3",
     "noble": "^1.9.1",
     "node-beacon-scanner": "^0.1.0",
-    "socket.io": "^1.7.3",
-    "socket.io-client": "^2.1.1",
+    "socket.io": "^4.5.3",
+    "socket.io-client": "^2.5.0",
     "tailwindcss": "^0.6.6",
     "vue": "^2.5.17",
     "vue-toasted": "^1.1.25"
