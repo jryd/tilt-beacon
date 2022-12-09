@@ -18,7 +18,7 @@
     "axios": "^0.18.0",
     "cross-env": "^5.2.0",
     "date-fns": "^1.29.0",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "laravel-mix": "^2.1.14",
     "laravel-mix-tailwind": "^0.1.0",
     "material-icons": "^0.2.3",
